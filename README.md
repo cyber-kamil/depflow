@@ -26,13 +26,13 @@
 ### Install with Go (recommended)
 
 ```sh
-go install github.com/yourusername/depflow-check@latest
+go install github.com/cyber-kamil/depflow@latest
 ```
 
 Or specify a particular version:
 
 ```sh
-go install github.com/yourusername/depflow-check@v0.1.0
+go install github.com/cyber-kamil/depflow@v0.1.0
 ```
 
 This will place `depflow-check` in your `$GOPATH/bin` or `$HOME/go/bin`.
@@ -40,7 +40,7 @@ This will place `depflow-check` in your `$GOPATH/bin` or `$HOME/go/bin`.
 ### Clone the repo and build
 
 ```sh
-git clone https://github.com/yourusername/depflow-check.git
+git clone https://github.com/cyber-kamil/depflow.git
 cd depflow-check
 go build -o depflow-check
 ```
@@ -102,8 +102,8 @@ Please see [CONTRIBUTING.md](CONTRIBUTING.md) for more details (coming soon).
 ---
 
 ## 🌍 Community & Support
-- **Issues:** [Submit here](https://github.com/yourusername/depflow-check/issues)
-- **Discussions:** [Start a topic](https://github.com/yourusername/depflow-check/discussions) (coming soon)
+- **Issues:** [Submit here](https://github.com/cyber-kamil/depflow/issues)
+- **Discussions:** [Start a topic](https://github.com/cyber-kamil/depflow/discussions) (coming soon)
 - **Roadmap:** See below and suggest new features!
 
 ---
@@ -123,4 +123,4 @@ MIT — free for personal and commercial use.
 
 ---
 
-*Made with ❤️ by the cyber-kamil* 
+*Made by the cyber-kamil* 
