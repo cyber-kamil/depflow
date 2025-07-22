@@ -23,7 +23,21 @@
 
 ## 📦 Installation
 
-Clone the repo and build:
+### Install with Go (recommended)
+
+```sh
+go install github.com/yourusername/depflow-check@latest
+```
+
+Or specify a particular version:
+
+```sh
+go install github.com/yourusername/depflow-check@v0.1.0
+```
+
+This will place `depflow-check` in your `$GOPATH/bin` or `$HOME/go/bin`.
+
+### Clone the repo and build
 
 ```sh
 git clone https://github.com/yourusername/depflow-check.git
