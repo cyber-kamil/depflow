@@ -1,6 +1,6 @@
 # depflow-check
 
-[![Go Report Card](https://goreportcard.com/badge/github.com/yourusername/depflow-check)](https://goreportcard.com/report/github.com/yourusername/depflow-check)
+[![Go Report Card](https://goreportcard.com/badge/github.com/cyber-kamil/depflow)](https://goreportcard.com/report/github.com/cyber-kamil/depflow)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
 **depflow-check** is an open-source CLI tool that helps you and your team keep dependencies up-to-date and safe across multiple languages. It scans your project for lock files, checks for newer versions, and generates a beautiful Markdown report with changelogs and breaking change highlights—perfect for local use and CI/CD pipelines.
