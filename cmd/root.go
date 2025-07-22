@@ -171,10 +171,10 @@ func writeMarkdownReportWithHeader(header string, reports []report.NpmDepReport,
 }
 
 var rootCmd = &cobra.Command{
-	Use:   "depflow-check",
+	Use:   "depflow",
 	Short: "Check for outdated dependencies in Go, Python, and Java projects",
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Printf("depflow-check: Scanning directory %s, will output to %s\n", dir, output)
+		fmt.Printf("depflow: Scanning directory %s, will output to %s\n", dir, output)
 
 		lockPath, err := scanForNpmLockFile(dir)
 		if err != nil {

@@ -1,9 +1,9 @@
-# depflow-check
+# depflow
 
 [![Go Report Card](https://goreportcard.com/badge/github.com/cyber-kamil/depflow)](https://goreportcard.com/report/github.com/cyber-kamil/depflow)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
-**depflow-check** is an open-source CLI tool that helps you and your team keep dependencies up-to-date and safe across multiple languages. It scans your project for lock files, checks for newer versions, and generates a beautiful Markdown report with changelogs and breaking change highlights—perfect for local use and CI/CD pipelines.
+**depflow** is an open-source CLI tool that helps you and your team keep dependencies up-to-date and safe across multiple languages. It scans your project for lock files, checks for newer versions, and generates a beautiful Markdown report with changelogs and breaking change highlights—perfect for local use and CI/CD pipelines.
 
 ---
 
@@ -35,14 +35,14 @@ Or specify a particular version:
 go install github.com/cyber-kamil/depflow@v0.1.0
 ```
 
-This will place `depflow-check` in your `$GOPATH/bin` or `$HOME/go/bin`.
+This will place `depflow` in your `$GOPATH/bin` or `$HOME/go/bin`.
 
 ### Clone the repo and build
 
 ```sh
 git clone https://github.com/cyber-kamil/depflow.git
-cd depflow-check
-go build -o depflow-check
+cd depflow
+go build -o depflow
 ```
 
 Or run directly with Go:
@@ -58,7 +58,7 @@ go run . --dir /path/to/your/project
 Scan a project and generate a Markdown report:
 
 ```sh
-./depflow-check --dir /path/to/your/project --output dependency-report.md
+./depflow --dir /path/to/your/project --output dependency-report.md
 ```
 
 - `--dir`   : Directory to scan (default: current directory)
@@ -83,7 +83,7 @@ Add to your pipeline to fail on breaking changes or just to generate a report:
 
 ```yaml
 - name: Check dependencies
-  run: ./depflow-check --dir . --output dependency-report.md
+  run: ./depflow --dir . --output dependency-report.md
 ```
 
 ---
