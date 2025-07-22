@@ -11,6 +11,8 @@ var SupportedLockFiles = []string{
 	"Pipfile.lock",
 	"pom.xml",
 	"build.gradle",
+	"package-lock.json",
+	"yarn.lock",
 }
 
 func ScanForLockFiles(dir string) ([]string, error) {

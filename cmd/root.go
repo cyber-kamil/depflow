@@ -113,6 +113,41 @@ func checkYarnDependencies(lockPath string) ([]report.NpmDepReport, map[string]*
 	return reports, changelogs, nil
 }
 
+// Add a type for the Go version checker function
+// This allows us to inject a mock in tests
+
+type GoVersionChecker func(dir string) (map[string]string, error)
+
+func checkGoDependencies(dir string, goModPath string, versionChecker GoVersionChecker) ([]report.NpmDepReport, map[string]*model.ChangelogInfo, error) {
+	mods, err := parse.ParseGoModFile(goModPath)
+	if err != nil {
+		return nil, nil, err
+	}
+	latest, err := versionChecker(dir)
+	if err != nil {
+		return nil, nil, err
+	}
+	reports := []report.NpmDepReport{}
+	changelogs := make(map[string]*model.ChangelogInfo)
+	for name, current := range mods {
+		newest, hasUpdate := latest[name]
+		outdated := hasUpdate && current != newest
+		reports = append(reports, report.NpmDepReport{
+			Name:     name,
+			Current:  current,
+			Latest:   newest,
+			Outdated: outdated,
+		})
+		if outdated {
+			info, err := check.FetchChangelogInfo(name, current, newest)
+			if err == nil && info != nil {
+				changelogs[name] = info
+			}
+		}
+	}
+	return reports, changelogs, nil
+}
+
 func writeMarkdownReport(reports []report.NpmDepReport, output string) error {
 	md := report.GenerateNpmMarkdownReport(reports, map[string]*model.ChangelogInfo{})
 	return os.WriteFile(output, []byte(md), 0644)
@@ -182,6 +217,23 @@ var rootCmd = &cobra.Command{
 				fmt.Printf("Error writing report to %s: %v\n", output, err)
 			} else {
 				fmt.Printf("Report written to %s\n", output)
+			}
+		}
+		goModPath := dir + "/go.mod"
+		if _, err := os.Stat(goModPath); err == nil {
+			fmt.Printf("Found lock file: %s\n", goModPath)
+			reports, changelogs, err := checkGoDependencies(dir, goModPath, check.GetGoModuleLatestVersions)
+			if err != nil {
+				fmt.Printf("Error checking Go dependencies: %v\n", err)
+				return
+			}
+			fmt.Println("Checking Go dependencies for updates...")
+			err = writeMarkdownReportWithHeader("Go (go.mod)", reports, changelogs, output, false)
+			if err != nil {
+				fmt.Printf("Error writing report to %s: %v\n", output, err)
+			} else {
+				fmt.Printf("Report written to %s\n", output)
+				wrote = true
 			}
 		}
 		if lockPath == "" && yarnPath == "" {
